@@ -5,6 +5,6 @@ class Singer(Base):
     __tablename__= "singers"
 
     id= Column(Integer, primary_key=True, index=True)
-    nombre= Column(String, nullable=False)
-    edad = Column(String, nullable=False)
-    genero = Column(String, nullable=False)
+    name= Column(String, nullable=False)
+    age = Column(String, nullable=False)
+    genre = Column(String, nullable=False)

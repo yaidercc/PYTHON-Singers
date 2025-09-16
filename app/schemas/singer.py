@@ -1,21 +1,29 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, Field, validator
+from typing import Optional
 
 class SingerBase(BaseModel):
-    nombre: str
-    edad: int
-    genero: str
+    name: str
+    age: int
+    genre: str
     
+    @validator("genre")
+    def normalize_genre(cls, v):
+        return v.strip().lower()
 
 class SingerCreate(SingerBase):
-    pass
+    name: str = Field(..., min_length=1)
+    age: int = Field(..., gt=0)  
+    genre: str = Field(..., min_length=3)
 
 class SingerUpdate(SingerBase):
-    pass
+    name: Optional[str] = Field(None, min_length=1)
+    age: Optional[int] = Field(None, gt=0)
+    genre: Optional[str] = Field(None, min_length=3)
 
-# This schema is for the get endpoints
+
+# Schema para los endpoints GET /responses
 class SingerOut(SingerBase):
     id: int
 
-    # parse an object from SQLAlchemy to a dictionary
     class Config:
         orm_mode = True

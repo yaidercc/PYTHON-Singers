@@ -19,7 +19,8 @@ def create(db: Session, singer: SingerCreate):
 def update(db:Session, singer_id: int ,data: SingerUpdate):
     singer = get_by_id(db, singer_id)
     if singer:
-        for key, value in data.dict().items():
+        update_data = data.dict(exclude_unset=True) # Update Only Sended data
+        for key, value in update_data.items():
             setattr(singer, key, value)
         db.commit()
         db.refresh(singer)
