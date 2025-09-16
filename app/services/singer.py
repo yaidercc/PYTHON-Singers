@@ -15,3 +15,12 @@ def create(db: Session, singer: SingerCreate):
     db.refresh(newSinger)
     
     return newSinger
+
+def update(db:Session, singer_id: int ,data: SingerUpdate):
+    singer = get_by_id(db, singer_id)
+    if singer:
+        for key, value in data.dict().items():
+            setattr(singer, key, value)
+        db.commit()
+        db.refresh(singer)
+    return singer
