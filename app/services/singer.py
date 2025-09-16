@@ -7,3 +7,11 @@ def get_all(db: Session):
 
 def get_by_id(db: Session, singer_id: int):
     return db.query(Singer).filter(Singer.id==singer_id).first()
+
+def create(db: Session, singer: SingerCreate):
+    newSinger = Singer(**singer.dict())
+    db.add(newSinger)
+    db.commit()
+    db.refresh(newSinger)
+    
+    return newSinger
