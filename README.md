@@ -30,15 +30,19 @@ Documentación automática:
 ## Endpoints
 
 - Obtener todos los cantantes
-GET /singers
+GET /api/singers
 
 - Obtener un cantante por ID
-GET /singers/{id}
+GET /api/singers/{id}
 
 - Crear un cantante
-POST /singers
+POST /api/singers
 
-JSON ejemplo:
+- Actualizar un cantante PUT /api/singers/{id}
+
+- Eliminar un cantante DELETE /api/singers/{id}
+
+JSON ejemplo para crear un cantante:
 
 ```
 {
@@ -48,9 +52,7 @@ JSON ejemplo:
 }
 ```
 
-- Actualizar un cantante PUT /singers/{id}
-
-JSON ejemplo (campos opcionales):
+JSON ejemplo para actualizar un cantante (campos opcionales):
 
 ```
 {
@@ -58,6 +60,5 @@ JSON ejemplo (campos opcionales):
 }
 ```
 
-- Eliminar un cantante
 
-DELETE /singers/{id}
+
