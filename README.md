@@ -24,6 +24,7 @@ La API estará disponible en:
 Documentación automática:
 
 -> Swagger UI → http://127.0.0.1:8000/docs
+
 -> Redoc → http://127.0.0.1:8000/redoc
 
 ## Endpoints
@@ -47,11 +48,9 @@ JSON ejemplo:
 }
 ```
 
-- Actualizar un cantante
+- Actualizar un cantante PUT /singers/{id}
 
-PUT /singers/{id}
-
-Body JSON ejemplo (campos opcionales):
+JSON ejemplo (campos opcionales):
 
 ```
 {
@@ -60,4 +59,5 @@ Body JSON ejemplo (campos opcionales):
 ```
 
 - Eliminar un cantante
+
 DELETE /singers/{id}
