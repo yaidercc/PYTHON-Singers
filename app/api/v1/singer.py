@@ -2,7 +2,7 @@ from typing import List
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from app.schemas.singer import SingerCreate, SingerUpdate, SingerOut
-from app.services.singer import get_all, get_by_id,create, update
+from app.services.singer import get_all, get_by_id,create, update, delete
 from app.db.session import get_db
 
 router = APIRouter(prefix="/singers", tags=["Singers"])
@@ -30,3 +30,10 @@ def updateSinger(singer_id: int, singer: SingerUpdate, db: Session = Depends(get
     if not singer:
         raise HTTPException(status_code=404, detail="Singer not found")
     return singer
+
+@router.delete("/{singer_id}", response_model=str)
+def deleteSinger(singer_id:int,db: Session = Depends(get_db)):
+    singer = delete(db,singer_id)
+    if not singer:
+        raise HTTPException(status_code=404, detail="Singer not found")
+    return "Singer deleted successfully"

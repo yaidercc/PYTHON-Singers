@@ -24,3 +24,10 @@ def update(db:Session, singer_id: int ,data: SingerUpdate):
         db.commit()
         db.refresh(singer)
     return singer
+
+def delete(db: Session, singer_id: int):
+    singer = get_by_id(db, singer_id)
+    if singer:
+        db.delete(singer)
+        db.commit()
+    return singer
